@@ -13,3 +13,4 @@
 
 Route::get('/', 'ThreadListController@index');
 Route::post('/', 'ThreadListController@addThread')->name('addThread');
+Route::get('image/{id}', 'ImageController@getImage')->name('getImage');
