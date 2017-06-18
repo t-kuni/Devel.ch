@@ -13,4 +13,8 @@
 
 Route::get('/', 'ThreadListController@index');
 Route::post('/', 'ThreadListController@addThread')->name('addThread');
+Route::group(['prefix' => '/thread/{id}', 'middleware' => 'thread'], function() {
+    Route::get('', 'ThreadMainController@showThread')->name('showThread');
+    Route::post('', 'ThreadMainController@postComment')->name('postComment');
+});
 Route::get('image/{id}', 'ImageController@getImage')->name('getImage');

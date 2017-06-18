@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Thread;
 use App\Image;
 use DB;
+use App\Http\Requests\AddThreadRequest;
 
 class ThreadListController extends Controller
 {
@@ -18,7 +19,7 @@ class ThreadListController extends Controller
         ]);
     }
 
-    public function addThread(Request $request) {
+    public function addThread(AddThreadRequest $request) {
         DB::transaction(function () use ($request) {
             $image = null;
             if ($request->image !== null) {
