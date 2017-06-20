@@ -10,3 +10,7 @@ Homestead.yaml
 npm-debug.log
 .env
 .vimrc.local
+public/css
+public/js
+public/mix-manifest.json
+public/fonts
