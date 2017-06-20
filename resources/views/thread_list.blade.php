@@ -46,11 +46,11 @@
                 @endif
                 <div class="card-block">
                     <h3 class="card-title">{{$thread->title}}</h3>
-                    <p class="card-text">{{$thread->text}}</p>
+                    <p class="card-text">{!!$thread->text!!}</p>
                     {!! link_to_route('showThread', '閲覧する', [$thread->id], ['class' => 'btn btn-primary']) !!}
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Last updated {{$thread->updated_at}}</small>
+                    <small class="text-muted">作成日 {{$thread->updated_at}}</small>
                 </div>
             </div>
         @endforeach

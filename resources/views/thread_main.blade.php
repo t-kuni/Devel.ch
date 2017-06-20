@@ -1,6 +1,11 @@
 @extends('app')
 @section('title', 'スレッド一覧')
 
+@section('head')
+    <link href="{{asset('css/thread_main.css')}}" rel="stylesheet">
+    <script src="{{asset('js/thread_main.js')}}"></script>
+@endsection
+
 @section('content')
     <div class="card">
         <div class="card-header">

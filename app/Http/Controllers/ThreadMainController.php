@@ -8,6 +8,7 @@ use App\ThreadComment;
 use App\Thread;
 use DB;
 use App\Image;
+use Markdown;
 
 class ThreadMainController extends Controller
 {
@@ -31,7 +32,7 @@ class ThreadMainController extends Controller
 
             $comment = new ThreadComment();
             $comment->name      = $request->name;
-            $comment->text      = $request->text;
+            $comment->text      = Markdown::convertToHtml($request->text);
             $comment->password  = $request->password;
             $comment->thread_id = $request->id;
             $comment->image_id  = $image !== null ? $image->id : null;

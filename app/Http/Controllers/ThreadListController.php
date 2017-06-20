@@ -7,6 +7,7 @@ use App\Thread;
 use App\Image;
 use DB;
 use App\Http\Requests\AddThreadRequest;
+use Markdown;
 
 class ThreadListController extends Controller
 {
@@ -32,7 +33,7 @@ class ThreadListController extends Controller
             $thread = new Thread();
             $thread->title    = $request->title;
             $thread->password = $request->password;
-            $thread->text     = $request->text;
+            $thread->text     = Markdown::convertToHtml($request->text);
             $thread->image_id = $request->image !== null ? $image->id : null;
             $thread->save();
         });
