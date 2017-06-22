@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keyword" content="Developer,エンジニア,匿名掲示板,コミュニティ,IT">
+        <meta name="description" content="エンジニア向けの匿名掲示板です。">
 
         <title>Dev.ch - @yield('title')</title>
 
