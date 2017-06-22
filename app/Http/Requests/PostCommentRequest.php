@@ -28,7 +28,7 @@ class PostCommentRequest extends FormRequest
             'text'     => ['required', 'string', 'max:1000'],
             'password' => ['required', 'string', 'between:5,20'],
             'image'    => ['file', 'image', 'max:2048'],
-            'recaptcha_response_field' => ['required', 'recaptcha'],
+            'g-recaptcha-response' => ['required', 'recaptcha'],
         ];
     }
 }

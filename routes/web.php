@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ThreadListController@index');
+Route::get('/', 'ThreadListController@index')->name('showThreadList');
 Route::post('/', 'ThreadListController@addThread')->name('addThread');
 Route::group(['prefix' => '/thread/{id}', 'middleware' => 'thread'], function() {
     Route::get('', 'ThreadMainController@showThread')->name('showThread');
