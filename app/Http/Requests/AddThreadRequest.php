@@ -28,6 +28,7 @@ class AddThreadRequest extends FormRequest
             'password' => ['required', 'string', 'between:5,20'],
             'text'     => ['required', 'string', 'max:1000'],
             'image'    => ['file', 'image', 'max:2048'],
+            'g-recaptcha-response' => ['required', 'recaptcha'],
         ];
     }
 }

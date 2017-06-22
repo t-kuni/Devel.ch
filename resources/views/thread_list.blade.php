@@ -30,6 +30,7 @@
                     <input type="file" name="image" class="form-control-file" id="input-image" aria-describedby="fileHelp">
                     <small id="fileHelp" class="form-text text-muted">省略可</small>
                 </div>
+                {!! Recaptcha::render() !!}
                 <button type="submit" class="btn btn-primary">作成</button>
             {!! Form::close() !!}
         </div>
