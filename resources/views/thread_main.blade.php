@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    {!! link_to_route('showThreadList', 'スレッド一覧へ') !!}
+    <span>[{!! link_to_route('showThreadList', 'スレッド一覧へ') !!}]</span>
 
     <div class="card" style="margin-top: 20px; margin-bottom: 10px;">
         <div class="card-header">
@@ -60,7 +60,9 @@
                 <small class="text-muted">日時：{{$comment->created_at}}</small>
             </div>
             @if ($comment->image_id !== null)
-                <img class="rounded float-left" style="width: 200px" src="{{route('getImage', $comment->image_id)}}" alt="Card image cap">
+                <a href="{{route('getImage', $comment->image_id)}}" target="_blank">
+                    <img class="img-fluid" style="max-width:200px; height:auto;" src="{{route('getImage', $comment->image_id)}}" alt="Card image cap">
+                </a>
             @endif
             <div class="card-block">
                 <p class="card-text"><?php echo Markdown::convertToHtml($comment->text)?></p>
