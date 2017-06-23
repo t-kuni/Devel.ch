@@ -49,7 +49,7 @@
             <small class="text-muted">作成日時：{{$thread->created_at}}</small>
         </div>
         <div class="card-block">
-            <p class="card-text">{!!$thread->text!!}</p>
+            <p class="card-text"><?php echo Markdown::convertToHtml($thread->text)?></p>
         </div>
     </div>
 
@@ -63,7 +63,7 @@
                 <img class="rounded float-left" style="width: 200px" src="{{route('getImage', $comment->image_id)}}" alt="Card image cap">
             @endif
             <div class="card-block">
-                <p class="card-text">{!!$comment->text!!}</p>
+                <p class="card-text"><?php echo Markdown::convertToHtml($comment->text)?></p>
             </div>
         </div>
     @endforeach

@@ -53,7 +53,7 @@
                 @endif
                 <div class="card-block">
                     <h3 class="card-title">{{$thread->title}}</h3>
-                    <p class="card-text">{!!$thread->text!!}</p>
+                    <p class="card-text"><?php echo Markdown::convertToHtml($thread->text)?></p>
                     {!! link_to_route('showThread', '閲覧する', [$thread->id], ['class' => 'btn btn-primary']) !!}
                 </div>
                 <div class="card-footer">
