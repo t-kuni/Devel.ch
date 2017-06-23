@@ -16,4 +16,5 @@ mix
     .js('resources/assets/js/thread_main.js', 'public/js')
     .sass('resources/assets/sass/thread_list.scss', 'public/css')
     .sass('resources/assets/sass/thread_main.scss', 'public/css')
+    .copy('resources/assets/css/bootstrap.min.css', 'public/css')
 ;

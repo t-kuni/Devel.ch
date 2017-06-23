@@ -20,6 +20,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+
         @yield('head')
     </head>
     <body>
