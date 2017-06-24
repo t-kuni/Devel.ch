@@ -48,7 +48,7 @@ class ThreadMainController extends Controller
             ->first();
 
         if ($thread === null) {
-            return redirect()->back()->withError(['' => 'パスワードが異なります'])->withInput();
+            return back()->withError(['' => 'パスワードが異なります']);
         }
 
         $thread->delete();

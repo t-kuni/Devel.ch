@@ -7,6 +7,29 @@
 @endsection
 
 @section('content')
+
+    @php
+        $hasErr1 = count($errors) > 0;
+        $hasErr2 = Session::has('error');
+    @endphp
+
+    @if ($hasErr1 or $hasErr2)
+        <div class="alert alert-danger">
+            <ul class="list-group">
+                @if ($hasErr1)
+                    @foreach ($errors->all() as $error)
+                        <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                    @endforeach
+                @endif
+                @if ($hasErr2)
+                    @foreach (Session::get('error') as $error)
+                        <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                    @endforeach
+                @endif
+            </ul>
+        </div>
+    @endif
+
     <p>Dev.ch(通称：デヴちゃん)はエンジニア向けの匿名掲示板です。<br/>応援してくださいね☆</p>
     <div class="card">
         <div class="card-header">
