@@ -45,8 +45,23 @@
 
     <div class="card" style="margin-top: 20px; margin-bottom: 10px;">
         <div class="card-header">
-            <h2>{{$thread->title}}</h2>
-            <small class="text-muted">作成日時：{{$thread->created_at}}</small>
+            <div class="row">
+                <div class="col-xs-1">
+                    <div style="margin-right:10px">
+                        @if ($thread->image_id !== null)
+                            <a href="{{route('getImage', $thread->image_id)}}" target="_blank">
+                                <img class="img-fluid" style="max-width:100px; height:auto;" src="{{route('getImage', $thread->image_id)}}" alt="Card image cap">
+                            </a>
+                        @else
+                            <img class="img-fluid" style="max-width:100px; height:auto;" src="/img/no_image.png">
+                        @endif
+                    </div>
+                </div>
+                <div class="col-xs-11">
+                    <h2>{{$thread->title}}</h2>
+                    <small class="text-muted">作成日時：{{$thread->created_at}}</small>
+                </div>
+            </div>
         </div>
         <div class="card-block">
             <p class="card-text"><?php echo Markdown::convertToHtml($thread->text)?></p>

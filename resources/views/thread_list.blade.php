@@ -47,7 +47,7 @@
         @foreach ($threads as $thread)
             <div class="card">
                 @if ($thread->image_id === null)
-                    <img class="img-fluid" style="max-width:100%; height:auto" src="img/no_image.png" alt="Card image cap">
+                    <img class="img-fluid" style="max-width:100%; height:auto" src="img/no_image.png">
                 @else
                     <img class="img-fluid" style="max-width:100%; height:auto" src="{{route('getImage', $thread->image_id)}}" alt="Card image cap">
                 @endif
