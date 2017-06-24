@@ -64,48 +64,54 @@
         </div>
     </div>
 
-    <span>[{!! link_to_route('showThreadList', 'スレッド一覧へ') !!}]</span>
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="col-12 text-right">
+            <span>[{!! link_to_route('showThreadList', 'スレッド一覧へ') !!}]</span>
+        </div>
+    </div>
 
-    <div class="card" style="margin-top: 20px; margin-bottom: 10px;">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-xs-1">
-                    <div style="margin-right:10px">
-                        @if ($thread->image_id !== null)
-                            <a href="{{route('getImage', $thread->image_id)}}" target="_blank">
-                                <img class="img-fluid" style="max-width:100px; height:auto;" src="{{route('getImage', $thread->image_id)}}" alt="Card image cap">
-                            </a>
-                        @else
-                            <img class="img-fluid" style="max-width:100px; height:auto;" src="/img/no_image.png">
-                        @endif
+    <div class="row">
+        <div class="col-12">
+            <div class="card" >
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            @if ($thread->image_id !== null)
+                                <a href="{{route('getImage', $thread->image_id)}}" target="_blank">
+                                    <img class="img-fluid" style="max-width:100%; height:auto;" src="{{route('getImage', $thread->image_id)}}" alt="Card image cap">
+                                </a>
+                            @else
+                                <img class="img-fluid" style="max-width:100%; height:auto;" src="/img/no_image.png">
+                            @endif
+                        </div>
+                        <div class="col-sm-10">
+                            <h2>{{$thread->title}}</h2>
+                            <small class="text-muted">作成日時：{{$thread->created_at}}</small>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-11">
-                    <h2>{{$thread->title}}</h2>
-                    <small class="text-muted">作成日時：{{$thread->created_at}}</small>
-                </div>
-            </div>
-        </div>
-        <div class="card-block">
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="card-text"><?php echo Markdown::convertToHtml($thread->text)?></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#deleteForm" aria-expanded="true" aria-controls="deleteForm">
-                        <span>削除</span>
-                    </a>
-                    <div id="deleteForm" class="collapse" role="tabpanel" aria-labelledby="deleteForm">
-                        {!! Form::open(['route' => ['deleteThread', $thread->id], 'files' => true, 'class' => 'form-inline pull-right']) !!}
-                            <div class="form-group">
-                                <label for="input-password-to-exec-delete" style="margin-right: 10px">削除パスワード</label>
-                                <input type="password" id="input-password-to-exec-delete" name="password" class="form-control" placeholder="Password" style="margin-right: 10px">
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="card-text"><?php echo Markdown::convertToHtml($thread->text)?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#deleteForm" aria-expanded="true" aria-controls="deleteForm">
+                                <span>削除</span>
+                            </a>
+                            <div id="deleteForm" class="collapse" role="tabpanel" aria-labelledby="deleteForm">
+                                {!! Form::open(['route' => ['deleteThread', $thread->id], 'files' => true, 'class' => 'form-inline pull-right']) !!}
+                                    <div class="form-group">
+                                        <label for="input-password-to-exec-delete" style="margin-right: 10px">削除パスワード</label>
+                                        <input type="password" id="input-password-to-exec-delete" name="password" class="form-control" placeholder="Password" style="margin-right: 10px">
+                                    </div>
+                                    {!! Recaptcha::render() !!}
+                                    <button type="submit" class="btn btn-primary">削除</button>
+                                {!! Form::close() !!}
                             </div>
-                            {!! Recaptcha::render() !!}
-                            <button type="submit" class="btn btn-primary">削除</button>
-                        {!! Form::close() !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,6 +135,13 @@
         </div>
     @endforeach
 
-    <span>[{!! link_to_route('showThreadList', 'スレッド一覧へ') !!}]</span>
-    <span>[<a href="#top">トップへ</a>]</span>
+    <div class="row">
+        <div class="col-4">
+            <span>[<a href="javascript:location.reload();">リロード</a>]</span>
+        </div>
+        <div class="col-8 text-right">
+            <span>[{!! link_to_route('showThreadList', 'スレッド一覧へ') !!}]</span>
+            <span>[<a href="#top">ページトップへ</a>]</span>
+        </div>
+    </div>
 @endsection
