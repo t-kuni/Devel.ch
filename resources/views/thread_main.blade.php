@@ -7,6 +7,29 @@
 @endsection
 
 @section('content')
+
+    @php
+        $hasErr1 = count($errors) > 0;
+        $hasErr2 = Session::has('error');
+    @endphp
+
+    @if ($hasErr1 or $hasErr2)
+        <div class="alert alert-danger">
+            <ul class="list-group">
+                @if ($hasErr1)
+                    @foreach ($errors->all() as $error)
+                        <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                    @endforeach
+                @endif
+                @if ($hasErr2)
+                    @foreach (Session::get('error') as $error)
+                        <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                    @endforeach
+                @endif
+            </ul>
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -64,7 +87,28 @@
             </div>
         </div>
         <div class="card-block">
-            <p class="card-text"><?php echo Markdown::convertToHtml($thread->text)?></p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="card-text"><?php echo Markdown::convertToHtml($thread->text)?></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#deleteForm" aria-expanded="true" aria-controls="deleteForm">
+                        <span>削除</span>
+                    </a>
+                    <div id="deleteForm" class="collapse" role="tabpanel" aria-labelledby="deleteForm">
+                        {!! Form::open(['route' => ['deleteThread', $thread->id], 'files' => true, 'class' => 'form-inline pull-right']) !!}
+                            <div class="form-group">
+                                <label for="input-password-to-exec-delete" style="margin-right: 10px">削除パスワード</label>
+                                <input type="password" id="input-password-to-exec-delete" name="password" class="form-control" placeholder="Password" style="margin-right: 10px">
+                            </div>
+                            {!! Recaptcha::render() !!}
+                            <button type="submit" class="btn btn-primary">削除</button>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

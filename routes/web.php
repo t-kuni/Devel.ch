@@ -16,5 +16,6 @@ Route::post('/', 'ThreadListController@addThread')->name('addThread');
 Route::group(['prefix' => '/thread/{id}', 'middleware' => 'thread'], function() {
     Route::get('', 'ThreadMainController@showThread')->name('showThread');
     Route::post('', 'ThreadMainController@postComment')->name('postComment');
+    Route::post('delete', 'ThreadMainController@deleteThread')->name('deleteThread');
 });
 Route::get('image/{id}', 'ImageController@getImage')->name('getImage');

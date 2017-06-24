@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddThreadRequest extends FormRequest
+class DeleteThreadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,7 @@ class AddThreadRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'    => ['required', 'string', 'max:100'],
             'password' => ['required', 'string', 'between:5,20', 'alpha_num'],
-            'text'     => ['required', 'string', 'max:1000'],
-            'image'    => ['file', 'image', 'max:2048'],
-            'g-recaptcha-response' => ['required', 'recaptcha'],
         ];
     }
 }
