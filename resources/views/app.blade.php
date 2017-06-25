@@ -7,7 +7,7 @@
         <meta name="keyword" content="Developer,エンジニア,匿名掲示板,コミュニティ,IT">
         <meta name="description" content="エンジニア向けの匿名掲示板です。">
 
-        <title>Dev.ch - @yield('title')</title>
+        <title>{{config('app.name')}} - @yield('title')</title>
 
         {{-- jquery --}}
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -35,7 +35,7 @@
     </head>
     <body>
         <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
-            <h1>Dev.ch</h1>
+            <h1>{{config('app.name')}}</h1>
             @yield('content')
         </div>
     </body>

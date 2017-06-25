@@ -125,7 +125,7 @@
     @foreach ($thread->comments as $comment)
         <div class="card" style="margin-top: 10px; margin-bottom: 10px;">
             <div class="card-header">
-                <span>名前：{{$comment->name}}</span>
+                <span>名前：{{$comment->name ?? config('app.guest-name')}}</span>
                 <small class="text-muted">日時：{{$comment->created_at}}</small>
             </div>
             @if ($comment->image_id !== null)

@@ -24,7 +24,7 @@ class PostCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => ['string', 'max:20'],
+            'name'     => ['string', 'nullable', 'max:20'],
             'text'     => ['required', 'string', 'max:1000'],
             'password' => ['required', 'string', 'between:5,20'],
             'image'    => ['file', 'image', 'max:2048'],

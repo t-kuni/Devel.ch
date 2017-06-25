@@ -31,7 +31,7 @@
         </div>
     @endif
 
-    <p>Dev.ch(通称：デヴちゃん)はエンジニア向けの匿名掲示板です。<br/>応援してくださいね☆</p>
+    <p>{{config('app.name')}}(通称：デヴちゃん)はエンジニア向けの匿名掲示板です。<br/>応援してくださいね☆</p>
     <div class="card">
         <div class="card-header">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
