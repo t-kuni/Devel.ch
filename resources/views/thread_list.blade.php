@@ -2,6 +2,8 @@
 @section('title', 'スレッド一覧')
 
 @section('head')
+    <meta name="description" content="{{config('app.name')}}はエンジニア(情報技術者)向けの匿名掲示板です。最新の情報技術に関する雑談等に活用してください">
+
     <link href="{{asset('css/thread_list.css')}}" rel="stylesheet">
     <script src="{{asset('js/thread_list.js')}}"></script>
 @endsection

@@ -1,7 +1,9 @@
 @extends('app')
-@section('title', 'スレッド一覧')
+@section('title', htmlspecialchars($thread->title))
 
 @section('head')
+    <meta name="description" content="{{strip_tags(substr($thread->text, 0, 120))}}">
+
     <link href="{{asset('css/thread_main.css')}}" rel="stylesheet">
     <script src="{{asset('js/thread_main.js')}}"></script>
 @endsection

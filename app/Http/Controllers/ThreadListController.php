@@ -7,6 +7,7 @@ use App\Thread;
 use App\Image;
 use DB;
 use App\Http\Requests\AddThreadRequest;
+use MetaTag;
 
 class ThreadListController extends Controller
 {
