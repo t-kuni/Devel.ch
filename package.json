@@ -19,6 +19,7 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "js-cookie": "^2.1.4",
     "simplemde": "^1.11.2"
   }
 }

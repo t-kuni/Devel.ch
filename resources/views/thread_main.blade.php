@@ -11,9 +11,10 @@
     @php
         $hasErr1 = count($errors) > 0;
         $hasErr2 = Session::has('error');
+        $hasErr = $hasErr1 or $hasErr2;
     @endphp
 
-    @if ($hasErr1 or $hasErr2)
+    @if ($hasErr)
         <div class="alert alert-danger">
             <ul class="list-group">
                 @if ($hasErr1)
@@ -36,17 +37,18 @@
                 <span>コメントする</span>
             </a>
         </div>
-        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+
+        <div id="collapseOne" class="collapse {{$hasErr ? 'show' : ''}}" role="tabpanel" aria-labelledby="headingOne">
             <div class="card-block">
                 {!! Form::open(['route' => ['postComment', $thread->id], 'files' => true]) !!}
                     <div class="form-group">
                         <label for="input-name">名前</label>
-                        <input type="text" id="input-name" name="name" class="form-control" placeholder="名前">
+                        <input type="text" id="input-name" name="name" class="form-control" placeholder="名前" value="{{old('name')}}">
                         <small id="nameHelp" class="form-text text-muted">省略可</small>
                     </div>
                     <div class="form-group">
                         <label for="input-text">本文</label>
-                        <textarea name="text" class="form-control" id="input-text" rows="5"></textarea>
+                        <textarea name="text" class="form-control" id="input-text" rows="5">{{old('text')}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="input-password">削除パスワード</label>
@@ -58,7 +60,7 @@
                         <small id="fileHelp" class="form-text text-muted">省略可</small>
                     </div>
                     {!! Recaptcha::render() !!}
-                    <button type="submit" class="btn btn-primary">コメント</button>
+                    <button type="submit" class="btn btn-primary save-pw-to-cookie">コメント</button>
                 {!! Form::close() !!}
             </div>
         </div>
@@ -98,9 +100,11 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#deleteForm" aria-expanded="true" aria-controls="deleteForm">
-                                <span>削除</span>
-                            </a>
+                            <div class="text-right">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#deleteForm" aria-expanded="true" aria-controls="deleteForm">
+                                    <span>削除</span>
+                                </a>
+                            </div>
                             <div id="deleteForm" class="collapse" role="tabpanel" aria-labelledby="deleteForm">
                                 {!! Form::open(['route' => ['deleteThread', $thread->id], 'files' => true, 'class' => 'form-inline pull-right']) !!}
                                     <div class="form-group">

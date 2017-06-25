@@ -11,9 +11,10 @@
     @php
         $hasErr1 = count($errors) > 0;
         $hasErr2 = Session::has('error');
+        $hasErr = $hasErr1 or $hasErr2;
     @endphp
 
-    @if ($hasErr1 or $hasErr2)
+    @if ($hasErr)
         <div class="alert alert-danger">
             <ul class="list-group">
                 @if ($hasErr1)
@@ -37,21 +38,22 @@
                 <span>スレッドを作成する</span>
             </a>
         </div>
-        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+
+        <div id="collapseOne" class="collapse {{$hasErr ? 'show' : ''}}" role="tabpanel" aria-labelledby="headingOne">
             <div class="card-block">
                 {!! Form::open(['route' => 'addThread', 'files' => true]) !!}
                     <div class="form-group">
                         <label for="input-title">タイトル</label>
-                        <input type="text" id="input-title" name="title" class="form-control" placeholder="タイトル">
+                        <input type="text" id="input-title" name="title" class="form-control" placeholder="タイトル" value="{{old('title')}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-text">本文</label>
+                        <textarea name="text" class="form-control" id="input-text" rows="5">{{old('text')}}</textarea>
+                        <small id="textHelp" class="form-text text-muted">Markdown記法対応</small>
                     </div>
                     <div class="form-group">
                         <label for="input-password">削除パスワード</label>
                         <input type="password" id="input-password" name="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="input-text">本文</label>
-                        <textarea name="text" class="form-control" id="input-text" rows="5"></textarea>
-                        <small id="textHelp" class="form-text text-muted">Markdown記法対応</small>
                     </div>
                     <div class="form-group">
                         <label for="input-image">画像</label>
@@ -59,7 +61,7 @@
                         <small id="fileHelp" class="form-text text-muted">省略可</small>
                     </div>
                     {!! Recaptcha::render() !!}
-                    <button type="submit" class="btn btn-primary">作成</button>
+                    <button type="submit" class="btn btn-primary save-pw-to-cookie">作成</button>
                 {!! Form::close() !!}
             </div>
         </div>
