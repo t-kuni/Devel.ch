@@ -70,6 +70,36 @@
     </div>
 
     <h2 style="margin-top: 20px">スレッド一覧</h2>
+
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="col-12">
+            @if ($sort === null || $sort === 'update')
+                <span>[更新順]</span>
+            @else
+                <span>[{!! link_to_route('showThreadList', '更新順', [
+                    'sort' => 'update'
+                ]) !!}]</span>
+            @endif
+
+            @if ($sort === 'new')
+                <span>[新しい順]</span>
+            @else
+                <span>[{!! link_to_route('showThreadList', '新しい順', [
+                    'sort' => 'new'
+                ]) !!}]</span>
+            @endif
+
+            @if ($sort === 'old')
+                <span>[古い順]</span>
+            @else
+                <span>[{!! link_to_route('showThreadList', '古い順', [
+                    'sort' => 'old'
+                ]) !!}]</span>
+            @endif
+
+        </div>
+    </div>
+
     <div class="card-group">
         @foreach ($threads as $thread)
             <div class="card">

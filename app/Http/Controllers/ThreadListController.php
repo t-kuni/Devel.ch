@@ -12,15 +12,35 @@ use MetaTag;
 class ThreadListController extends Controller
 {
     //
-    public function index() {
-        $threads = Thread::all();
+    public function index(Request $request)
+    {
+
+        $thread = null;
+
+        $sort = $request->query("sort");
+        switch ($sort) {
+            case "update":
+                $threads = Thread::selectThreadsSortedByModifiedTime();
+                break;
+            case "new":
+                $threads = Thread::selectThreadsSortedByCreatedTimeDesc();
+                break;
+            case "old":
+                $threads = Thread::selectThreadsSortedByCreatedTimeAsc();
+                break;
+            default:
+                $threads = Thread::selectThreadsSortedByModifiedTime();
+                break;
+        }
 
         return view('thread_list', [
             'threads' => $threads,
+            'sort' => $sort,
         ]);
     }
 
-    public function addThread(AddThreadRequest $request) {
+    public function addThread(AddThreadRequest $request)
+    {
         DB::transaction(function () use ($request) {
             $image = null;
             if ($request->image !== null) {
@@ -31,9 +51,9 @@ class ThreadListController extends Controller
             }
 
             $thread = new Thread();
-            $thread->title    = $request->title;
+            $thread->title = $request->title;
             $thread->password = $request->password;
-            $thread->text     = $request->text;
+            $thread->text = $request->text;
             $thread->image_id = $request->image !== null ? $image->id : null;
             $thread->save();
         });
