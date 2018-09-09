@@ -54,9 +54,12 @@ jobs:
 #        - node_modules
 #        - ~/.yarn
 
-    # prepare the database
-    - run: echo "APP_CIPHER=AES-128-CBC" > .env
+      # prepare .env
+    - run: cp .env.example .env
     - run: php artisan key:generate
+    - run: sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=sqlite/'
+
+      # prepare the database
     - run: touch ./database/database.sqlite
     - run: php artisan migrate --seed --env=testing --database=sqlite --force
 
