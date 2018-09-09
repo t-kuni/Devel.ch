@@ -180,6 +180,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+
+	Orangehill\Iseed\IseedServiceProvider::class,
     ],
 
     /*

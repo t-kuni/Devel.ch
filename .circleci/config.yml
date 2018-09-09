@@ -43,20 +43,20 @@ jobs:
 
     # node cache
 
-    - restore_cache:
-        keys:
-        - node-v3-{{ checksum "package.json" }}
-        - node-v3-
-    - run: yarn install
-    - save_cache:
-        key: node-v3-{{ checksum "package.json" }}
-        paths:
-        - node_modules
-        - ~/.yarn
+#    - restore_cache:
+#        keys:
+#        - node-v3-{{ checksum "package.json" }}
+#        - node-v3-
+#    - run: yarn install
+#    - save_cache:
+#        key: node-v3-{{ checksum "package.json" }}
+#        paths:
+#        - node_modules
+#        - ~/.yarn
 
     # prepare the database
     - run: touch ./database/database.sqlite
-    - run: php artisan migrate --env=testing --database=sqlite --force
+    - run: php artisan migrate --seed --env=testing --database=sqlite --force
 
     # run tests with phpunit or codecept
     - run: ./vendor/bin/phpunit
