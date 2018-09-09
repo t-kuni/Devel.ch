@@ -60,8 +60,8 @@ jobs:
     - run: sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=sqlite/' .env
 
       # prepare the database
-    - run: touch ./database/database.sqlite
-    - run: php artisan migrate --seed --env=testing --database=sqlite --force
+    - run: touch ./database/homestead.sqlite
+    - run: php artisan migrate --seed --force
 
     # run tests with phpunit or codecept
     - run: ./vendor/bin/phpunit
